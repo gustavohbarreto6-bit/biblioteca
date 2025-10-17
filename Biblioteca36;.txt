@@ -1,0 +1,72 @@
+CREATE DATABASE Biblioteca36;
+USE Biblioteca36;
+
+CREATE TABLE Livro (
+    id_Livro INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(30),
+    autor VARCHAR(50),
+    genero VARCHAR(20),
+    ano_publicacao INT
+);
+
+CREATE TABLE Usuario (
+    id_Usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(30),
+    email VARCHAR(50),
+    tipo_Usuario ENUM('aluno', 'professor', 'funcionario')
+);
+
+CREATE TABLE Emprestimo (
+    id_Emprestimo INT PRIMARY KEY AUTO_INCREMENT,
+    id_Usuario INT NOT NULL,
+    id_Livro INT NOT NULL,
+    data_Emprestimo DATE NOT NULL,
+    data_Devolucao DATE,
+    FOREIGN KEY (id_Usuario) REFERENCES Usuario(id_Usuario),
+    FOREIGN KEY (id_Livro) REFERENCES Livro(id_Livro)
+);
+
+INSERT INTO Livro (titulo, autor, genero, ano_publicacao) VALUES ("Harry Potter", "J.K. Rowling", "Ficção", 1998), 
+("O Menino do Pijama Listrado", "John Boyne", "Ficção Histórica", 2006),
+ ("As Peripécias de BRT", "Gustavo Barreto", "Aventura", 2027), 
+("Java e Suas Maravilhas", "Diogo Barão", "Fantasia", 2004),
+ ("It: A Coisa", "Stephen King", "Terror, Ficção", 1986),
+ ("Avanze: A História do GOAT", "Eduardo Zanetti", "Biografia", 2025),
+("Ciencia da Computação", "J.K. Rowling", "Tecnologia", 2005),
+ ("HTML e suas Maravilhas", "Manuel Alvarez", "Tecnologia", 2025);
+
+
+INSERT INTO usuario (nome, email, tipo_Usuario)
+VALUES ("Gustavo Barreto", "gbrtsports@gnail.com", "Aluno"),
+("Raul Lopes", "magosupremo@gmail.com","Professor"),
+("Diogo Nascimento", "diogobahia24@outlook.com","professor"),
+("Andreia Silva", "drica23@outlook.com", "funcionario");
+);
+
+INSERT INTO Emprestimo (id_Usuario, id_Livro, data_Emprestimo, data_Devolucao)
+VALUES 
+    (3, 45, '2025-02-10', '2025-10-30'),
+    (2, 48, '2025-10-10', '2026-09-15');
+
+SELECT * FROM usuário
+ WHERE tipo_Usuario LIKE 'aluno%';
+
+SELECT * FROM livro
+WHERE gênero LIKE 'tecnologia%'
+ORDER BY titulo ASC;
+
+SELECT * FROM empréstimo
+WHERE month (data Empréstimo) = 3;
+
+DELETE FROM livro
+WHERE id=5;
+
+DELETE FROM empréstimo
+WHERE Dataemprstimo < CURTEDATE() INTERVAL 15 DAY;
+
+
+
+
+
+
+
